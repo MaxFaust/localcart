@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
-        <title>LocalCrate</title>
+        <title>LocalCart</title>
         <header>Header</header>
       </Head>
 
