@@ -1,19 +1,42 @@
-import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import React, { Component } from 'react';
 
-import Link from 'next/link'
+import Toolbar from '../components/Toolbar/Toolbar';
+import SideDrawer from '../components/SideDrawer/SideDrawer';
+import Backdrop from '../components/Backdrop/Backdrop';
 
-import Toolbar from '../components/Toolbar/Toolbar'
+class App extends Component {
+  state = {
+    sideDrawerOpen: false
+  };
 
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>LocalCart</title>
-        <header>
-          <Toolbar/>
-        </header>
-      </Head>
-    </div>
-  )
+  drawerToggleClickHandler = () => {
+    this.setState((prevState) => {
+      return {sideDrawerOpen: !prevState.sideDrawerOpen};
+    });
+  };
+
+  backdropClickHandler = () => {
+    this.setState({sideDrawerOpen: false});
+  };
+
+  render() {
+    let backdrop;
+
+    if (this.state.sideDrawerOpen) {
+      backdrop = <Backdrop click={this.backdropClickHandler} />
+    }
+    return (
+      <div style={{height: '100%'}}>
+        <Toolbar drawerClickHandler={this.drawerToggleClickHandler} />
+        <SideDrawer show={this.state.sideDrawerOpen} />
+        {backdrop}
+        <main style={{marginTop: '64px'}}>
+          <p>This is the page content!</p>
+        </main>
+        
+      </div>
+    );
+  }
 }
+
+export default App;
