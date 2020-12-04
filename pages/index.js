@@ -6,7 +6,7 @@ import Backdrop from '../components/Backdrop/Backdrop';
 
 class App extends Component {
   state = {
-    sideDrawerOpen: false
+    sideDrawerOpen: true
   };
 
   drawerToggleClickHandler = () => {
